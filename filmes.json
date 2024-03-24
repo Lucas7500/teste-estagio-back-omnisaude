@@ -1,1 +1,58 @@
-[{"titulo": "avengers", "ano_lancamento": "2017", "classificacao": "R", "sinopse": "teste", "diretor": "Vince Gilligan"}, {"titulo": "avengers", "ano_lancamento": "2017", "classificacao": "R", "sinopse": "teste", "diretor": "Vince Gilligan"}]
+[
+    {
+        "titulo": "avengers",
+        "ano_lancamento": "2017",
+        "classificacao": "R",
+        "sinopse": "teste",
+        "diretor": "Vince Gilligan"
+    },
+    {
+        "titulo": "avengers",
+        "ano_lancamento": "2017",
+        "classificacao": "R",
+        "sinopse": "teste",
+        "diretor": "Vince Gilligan"
+    },
+    {
+        "titulo": "baby driver",
+        "ano_lancamento": "2019",
+        "classificacao": "R",
+        "sinopse": "bebe motorista fodase",
+        "diretor": "Vince Gilligan"
+    },
+    {
+        "titulo": "baby driver",
+        "ano_lancamento": "2019",
+        "classificacao": "R",
+        "sinopse": "bebe motorista fodase",
+        "diretor": "Vince Gilligan"
+    },
+    {
+        "titulo": "baby driver",
+        "ano_lancamento": "2019",
+        "classificacao": "R",
+        "sinopse": "bebe motorista fodase",
+        "diretor": "Vince Gilligan"
+    },
+    {
+        "titulo": "baby driver",
+        "ano_lancamento": "2019",
+        "classificacao": "R",
+        "sinopse": "bebe motorista fodase",
+        "diretor": "Vince Gilligan"
+    },
+    {
+        "titulo": "baby driver",
+        "ano_lancamento": "2019",
+        "classificacao": "R",
+        "sinopse": "bebe motorista fodase",
+        "diretor": "Vince Gilligan"
+    },
+    {
+        "titulo": "baby driver",
+        "ano_lancamento": "2019",
+        "classificacao": "R",
+        "sinopse": "bebe motorista fodase",
+        "diretor": "Vince Gilligan"
+    }
+]
