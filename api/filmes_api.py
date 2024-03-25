@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from repositories.filmes_repository import FilmesRepository 
 import requests
 import json
 import os
@@ -15,21 +16,18 @@ status = {'OK': 200, 'CREATED': 201, 'INTERNAL_SERVER_ERROR': 500}
 
 
 @app.get(rota_obter_favoritos)
-def obter_todos():
-    operacao_arquivo = "r"
-    with open(nome_arquivo_memoria, operacao_arquivo) as file:
-        filmes = json.load(file)
-
-    return filmes
+def obter_favoritos():
+    return FilmesRepository.obter_todos(), status['OK']
 
 
 @app.get(rota_obter_por_titulo)
-def obter_por_titulo():
+def obter_por_titulo(titulo):
     parametro = 'titulo'
     valor_padrao_parametro = ''
 
-    titulo = request.args.get(
-        parametro, default=valor_padrao_parametro, type=str)
+    if not titulo:
+        titulo = request.args.get(
+            parametro, default=valor_padrao_parametro, type=str)
 
     parametro_api_key = 'apiKey'
     parametro_titulo = 't'
@@ -44,28 +42,15 @@ def obter_por_titulo():
         mensagem_erro = f"Erro ao acessar a API do OMDb: {r.status_code}"
         return jsonify({f"{nome_erro}:{mensagem_erro}"}), status['INTERNAL_SERVER_ERROR']
 
-    return r.json()
+    return r.json(), status['OK']
 
 
 @app.post(rota_adicionar_aos_favoritos)
-def adicionar_aos_favoritos():
-    filme = request.get_json()
-
-    try:
-        operacao_arquivo = "r"
-        with open(nome_arquivo_memoria, operacao_arquivo) as file:
-            filmes = json.load(file)
-    except FileNotFoundError:
-        filmes = []
-
-    filmes.append(filme)
-
-    operacao_arquivo = "w"
-    with open(nome_arquivo_memoria, operacao_arquivo) as file:
-        json.dump(filmes, file)
-
+def adicionar_aos_favoritos(filme):
+    if not filme:
+        filme = request.get_json()
+    
+    FilmesRepository.adicionar_aos_favoritos(filme)
+    
     mensagem_sucesso = "Success"
     return mensagem_sucesso, status['CREATED']
-
-
-app.run(port=5000, host='localhost', debug=True)
