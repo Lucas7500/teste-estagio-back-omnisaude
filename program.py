@@ -22,18 +22,12 @@ while not sair:
         case 1:
             titulo = input(
                 "Qual o título do filme que você deseja pesquisar? ")
-            filme_json = str(filmes_api.obter_por_titulo(titulo)[0])
-            for char in filme_json:
-                if char == "'":
-                    filme_json
+            filme = filmes_api.obter_por_titulo(titulo)[0]
 
-            print(filme_json)
-            break
-            if not filme_json:
+            if not filme:
                 print(f"O filme com o título {titulo} não foi encontrado")
             else:
-                filme_dict = json.loads(filme_json)
-                filme = Filme.convert(filme_dict)
+                filme = Filme.convert(filme)
                 filme.exibir()
 
                 adicionar_aos_favoritos = input(

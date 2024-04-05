@@ -16,6 +16,7 @@ class Filme:
         return filme
     
     def exibir(self):
+        print()
         print(f"Titulo: {self.titulo}")
         print(f"Ano de Lançamento: {self.ano_lancamento}")
         print(f"Classificação: {self.classificacao}")
