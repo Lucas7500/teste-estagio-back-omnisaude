@@ -6,6 +6,10 @@ print("Seja bem vindo ao seu catálogo de filmes!")
 
 sair = False
 
+def adicionar_filme_aos_favoritos(filme):
+    filmes_api.adicionar_aos_favoritos(filme)
+    print(f"{Filme.convert(filme).titulo} foi adicionado aos favoritos com sucesso!")
+
 while not sair:
     print("\nO que você deseja?")
 
@@ -20,8 +24,7 @@ while not sair:
         case 0:
             sair = True
         case 1:
-            titulo = input(
-                "Qual o título do filme que você deseja pesquisar? ")
+            titulo = input("Qual o título do filme que você deseja pesquisar? ")
             filme = filmes_api.obter_por_titulo(titulo)[0]
 
             if not filme:
@@ -29,12 +32,9 @@ while not sair:
             else:
                 Filme.convert(filme).exibir()
 
-                adicionar_aos_favoritos = input(
-                    f"Deseja adicionar o filme aos favoritos (S/N)? ")
+                adicionar_aos_favoritos = input(f"Deseja adicionar o filme aos favoritos (S/N)? ")
                 if adicionar_aos_favoritos.upper() == 'S':
-                    filmes_api.adicionar_aos_favoritos(filme)
-                    print(f"{filme['Title']} foi adicionado aos favoritos com sucesso!")
-
+                    adicionar_filme_aos_favoritos(filme)
         case 2:
             titulo = input(
                 "Qual o título do filme você deseja adicionar aos favoritos? ")
@@ -43,9 +43,7 @@ while not sair:
             if not filme:
                 print(f"O filme com o título {titulo} não foi encontrado.")
             else:
-                filmes_api.adicionar_aos_favoritos(filme)
-                print(
-                    f"{filme['Title']} foi adicionado aos favoritos com sucesso!")
+                adicionar_filme_aos_favoritos(filme)
         case 3:
             favoritos = filmes_api.obter_favoritos()[0]
 
