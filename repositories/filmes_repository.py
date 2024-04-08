@@ -3,6 +3,7 @@ import os
 
 
 class FilmesRepository:
+    path_db = os.path.join("db");
     path_filmes_favoritos = os.path.join("db", "filmes_favoritos.json")
 
     def obter_todos():
@@ -20,15 +21,18 @@ class FilmesRepository:
             FilmesRepository.criar_banco_em_memoria()
         
         operacao_arquivo = "r"
-        with open(FilmesRepository.path_filmes_favoritos, operacao_arquivo) as file:
-            filmes = json.load(file)
+        with open(FilmesRepository.path_filmes_favoritos, operacao_arquivo) as arquivo:
+            filmes = json.load(arquivo)
 
         filmes.append(filme)
 
         operacao_arquivo = "w"
-        with open(FilmesRepository.path_filmes_favoritos, operacao_arquivo) as file:
-            json.dump(filmes, file)
+        with open(FilmesRepository.path_filmes_favoritos, operacao_arquivo) as arquivo:
+            json.dump(filmes, arquivo)
 
     def criar_banco_em_memoria():
+        if not os.path.exists(FilmesRepository.path_db):
+            os.mkdir(FilmesRepository.path_db)
+        
         with open(FilmesRepository.path_filmes_favoritos, "w") as arquivo:
             json.dump([], arquivo)

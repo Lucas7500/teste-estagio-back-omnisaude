@@ -7,7 +7,7 @@ class Filme:
         self.diretor = diretor
 
     def convert(filme_dict):
-        filme = Filme(filme_dict['Title'],
+        return Filme(filme_dict['Title'],
                       filme_dict['Released'],
                       filme_dict['Rated'],
                       filme_dict['Plot'],

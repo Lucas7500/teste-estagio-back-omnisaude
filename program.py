@@ -27,31 +27,30 @@ while not sair:
             if not filme:
                 print(f"O filme com o título {titulo} não foi encontrado")
             else:
-                filme = Filme.convert(filme)
-                filme.exibir()
+                Filme.convert(filme).exibir()
 
                 adicionar_aos_favoritos = input(
                     f"Deseja adicionar o filme aos favoritos (S/N)? ")
                 if adicionar_aos_favoritos.upper() == 'S':
                     filmes_api.adicionar_aos_favoritos(filme)
-                    print(f"{titulo} foi adicionado aos favoritos com sucesso!")
+                    print(f"{filme['Title']} foi adicionado aos favoritos com sucesso!")
 
         case 2:
             titulo = input(
                 "Qual o título do filme você deseja adicionar aos favoritos? ")
-            filme_json = str(filmes_api.obter_por_titulo(titulo)[0])
+            filme = filmes_api.obter_por_titulo(titulo)[0]
 
-            if not filme_json:
+            if not filme:
                 print(f"O filme com o título {titulo} não foi encontrado.")
             else:
                 filmes_api.adicionar_aos_favoritos(filme)
-                print(f"{titulo} foi adicionado aos favoritos com sucesso!")
+                print(
+                    f"{filme['Title']} foi adicionado aos favoritos com sucesso!")
         case 3:
-            favoritos = filmes_api.obter_favoritos()
+            favoritos = filmes_api.obter_favoritos()[0]
+
             if favoritos == []:
                 print("Você não possui nenhum filme nos favoritos")
             else:
-                filmes = json.load(favoritos)
-
-                for filme in filmes:
-                    filme.exibir()
+                for filme_dict in favoritos:
+                    Filme.convert(filme_dict).exibir()
